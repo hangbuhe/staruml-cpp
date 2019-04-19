@@ -329,7 +329,7 @@ class CppCodeGenerator {
     var codeWriter = new codegen.CodeWriter(this.getIndentString(options))
     codeWriter.writeLine(copyrightHeader)
     codeWriter.writeLine()
-    codeWriter.writeLine('#include "' +  'stdafx.h"')
+    codeWriter.writeLine('#include "' +  '../stdafx.h"')
     codeWriter.writeLine('#include "' + elem.name + '.h"')
     codeWriter.writeLine()
     funct(codeWriter, elem, this)
