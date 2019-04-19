@@ -101,7 +101,7 @@ class CppCodeGenerator {
       for (i = 0; i < modifierList.length; i++) {
         modifierStr += modifierList[i] + ' '
       }
-      codeWriter.writeLine(modifierStr + 'enum ' + elem.name + ' {\r\n ' + elem.literals.map(lit => lit.name).join(',\r\n ') + ' };')
+      codeWriter.writeLine(modifierStr + 'enum ' + elem.name + ' {\n ' + elem.literals.map(lit => lit.name).join(',\n ') + ' };')
     }
 
     var writeClassHeader = (codeWriter, elem, cppCodeGen) => {
@@ -329,6 +329,7 @@ class CppCodeGenerator {
     var codeWriter = new codegen.CodeWriter(this.getIndentString(options))
     codeWriter.writeLine(copyrightHeader)
     codeWriter.writeLine()
+    codeWriter.writeLine('#include "' +  'stdafx.h"')
     codeWriter.writeLine('#include "' + elem.name + '.h"')
     codeWriter.writeLine()
     funct(codeWriter, elem, this)
