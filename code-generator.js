@@ -675,13 +675,17 @@ class CppCodeGenerator {
     if (elem.multiplicity) {
       if (['0..*', '1..*', '*'].includes(elem.multiplicity.trim())) {
         if (elem.isOrdered === true) {
-          _type = 'vector<' + _type + '>'
+          _type = 'std::vector<' + _type + '>'
         } else {
-          _type = 'vector<' + _type + '>'
+          _type = 'std::vector<' + _type + '>'
         }
       } else if (elem.multiplicity !== '1' && elem.multiplicity.match(/^\d+$/)) { // number
         // TODO check here
         _type += '[]'
+      }
+      else  { // 
+        // TODO check here
+        _type = 'std::'+elem.multiplicity+'<' + _type + '>'
       }
     }
     return _type
