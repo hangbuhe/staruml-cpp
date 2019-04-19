@@ -175,8 +175,8 @@ class CppCodeGenerator {
       }
 
       codeWriter.writeLine('class ' + elem.name + finalModifier + writeInheritance(elem) + ' {')
-      codeWriter.writeLine(elem.name +'()'+' {};')
-      codeWriter.writeLine('~'+elem.name +'()'+' {};')
+      codeWriter.writeLine(elem.name +'()'+'{};')
+      codeWriter.writeLine('~'+elem.name +'()'+'{};')
       
       if (classfiedAttributes._public.length > 0) {
         codeWriter.writeLine('public: ')
@@ -239,8 +239,10 @@ class CppCodeGenerator {
         docs += elem.documentation
       }
       codeWriter.writeLine(cppCodeGen.getDocuments(docs))
-      codeWriter.writeLine(elem.name +'::'+elem.name+'()'+' {}')
-      codeWriter.writeLine('~'+elem.name +'::'+elem.name+'()'+' {}')
+      
+      codeWriter.writeLine('public:\n'+elem.name +'::'+elem.name+'()'+'{}')  //hhhhhhhhhhhhhhhhhhhhhhhhhhh
+      codeWriter.writeLine('virtual '+elem.name +'::'+'~'+elem.name+'()'+'{}') //hhhhhhhhhhhhhhhhhhhhhhhhhh
+      
       writeClassMethod(methodList)
 
       // parsing nested class
