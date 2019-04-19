@@ -49,17 +49,20 @@ class CppCodeGenerator {
 
     /** @member {string} */
     this.basePath = basePath
-
+    var now = new Date()
     var doc = ''
+    doc += '\n***************************************************************************'
     if (app.project.getProject().name && app.project.getProject().name.length > 0) {
-      doc += '\nProject ' + app.project.getProject().name
+      doc += '\nProject: ' + app.project.getProject().name
     }
     if (app.project.getProject().author && app.project.getProject().author.length > 0) {
-      doc += '\n@author ' + app.project.getProject().author
+      doc += '\nAuthor: ' + app.project.getProject().author
+      doc += '\nModifiyed: ' + now.toLocaleString()
     }
     if (app.project.getProject().version && app.project.getProject().version.length > 0) {
-      doc += '\n@version ' + app.project.getProject().version
+      doc += '\nVersion ' + app.project.getProject().version
     }
+    doc +='\n***************************************************************************'
     copyrightHeader = this.getDocuments(doc)
   }
 
@@ -175,8 +178,8 @@ class CppCodeGenerator {
       }
 
       codeWriter.writeLine('class ' + elem.name + finalModifier + writeInheritance(elem) + ' {')
-      codeWriter.writeLine(elem.name +'()'+'{};')
-      codeWriter.writeLine('~'+elem.name +'()'+'{};')
+      codeWriter.writeLine('public:\n'+elem.name +'();')//hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+      codeWriter.writeLine('~'+elem.name +'();')//hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
       
       if (classfiedAttributes._public.length > 0) {
         codeWriter.writeLine('public: ')
@@ -240,8 +243,8 @@ class CppCodeGenerator {
       }
       codeWriter.writeLine(cppCodeGen.getDocuments(docs))
       
-      codeWriter.writeLine('public:\n'+elem.name +'::'+elem.name+'()'+'{}')  //hhhhhhhhhhhhhhhhhhhhhhhhhhh
-      codeWriter.writeLine('virtual '+elem.name +'::'+'~'+elem.name+'()'+'{}') //hhhhhhhhhhhhhhhhhhhhhhhhhh
+      codeWriter.writeLine(elem.name +'::'+elem.name+'()'+'\n{\n}')  //hhhhhhhhhhhhhhhhhhhhhhhhhhh
+      codeWriter.writeLine('virtual '+elem.name +'::'+'~'+elem.name+'()'+'\n{\n}') //hhhhhhhhhhhhhhhhhhhhhhhhhh
       
       writeClassMethod(methodList)
 
