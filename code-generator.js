@@ -51,18 +51,23 @@ class CppCodeGenerator {
     this.basePath = basePath
     var now = new Date()
     var doc = ''
-    doc += '\n***************************************************************************'
+    doc += '/***************************************************************************'
     if (app.project.getProject().name && app.project.getProject().name.length > 0) {
-      doc += '\nProject: ' + app.project.getProject().name
+      doc += '\n* Project: ' + app.project.getProject().name
     }
     if (app.project.getProject().author && app.project.getProject().author.length > 0) {
-      doc += '\nAuthor: ' + app.project.getProject().author
-      doc += '\nModifiyed: ' + now.toLocaleString()
+      doc += '\n* Author: ' + app.project.getProject().author
+      doc += '\n* Modified: ' + now.toLocaleString()
     }
     if (app.project.getProject().version && app.project.getProject().version.length > 0) {
-      doc += '\nVersion ' + app.project.getProject().version
+      doc += '\n* Version: ' + app.project.getProject().version
     }
-    doc +='\n***************************************************************************'
+     if (app.project.getProject().company && app.project.getProject().company.length > 0) {
+      doc += '\n* Copyright (c) ' + app.project.getProject().company + '. All rights reserved. '
+    }
+    
+    
+    doc +='\n***************************************************************************/'
     //copyrightHeader = this.getDocuments(doc)
     copyrightHeader =  doc 
   }
