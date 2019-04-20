@@ -520,6 +520,10 @@ class CppCodeGenerator {
       if (elem.defaultValue && elem.defaultValue.length > 0) {
         terms.push('= ' + elem.defaultValue)
       }
+      
+      if(elem.documentation.indexOf('\n') == -1){
+        return (terms.join(' ') + '// ' + elem.documentation + ';')
+      } 
       return (docs + terms.join(' ') + ';')
     }
   }
