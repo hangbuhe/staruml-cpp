@@ -314,6 +314,8 @@ class CppCodeGenerator {
     codeWriter.writeLine('#ifndef ' + headerString)
     codeWriter.writeLine('#define ' + headerString)
     codeWriter.writeLine()
+    codeWriter.writeLine('#if _MSC_VER >= 1000\n#pragma once\n#endif // _MSC_VER >= 1000')//hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+    codeWriter.writeLine()//hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 
     if (includePart.length > 0) {
       codeWriter.writeLine(includePart)
