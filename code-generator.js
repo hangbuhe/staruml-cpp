@@ -63,7 +63,8 @@ class CppCodeGenerator {
       doc += '\nVersion ' + app.project.getProject().version
     }
     doc +='\n***************************************************************************'
-    copyrightHeader = this.getDocuments(doc)
+    //copyrightHeader = this.getDocuments(doc)
+    copyrightHeader =  doc 
   }
 
   /**
