@@ -521,7 +521,7 @@ class CppCodeGenerator {
         terms.push('= ' + elem.defaultValue)
       }
       
-      if(elem.documentationlength > 0 && elem.documentation.indexOf('\n') == -1){
+      if(elem.documentation.length > 0 && elem.documentation.indexOf('\n') == -1){
         return (terms.join(' ') + ';' + '    // ' + elem.documentation)
       } 
       return (docs + terms.join(' ') + ';')
